@@ -8,6 +8,7 @@ interface ImageProps {
   src: string;
   color?: string;
   onChange?: () => void;
+  toggle?: boolean;
 }
 
 export default function Icons({
@@ -16,6 +17,7 @@ export default function Icons({
   src,
   color,
   onChange,
+  toggle,
 }: ImageProps) {
   const theme = useSettignsStore((state) => state.mode);
   const Image = styled.img`
@@ -24,9 +26,13 @@ export default function Icons({
     fill: ${color};
     border-radius: 100%;
     object-fit: fill;
-    /* box-shadow: 0 0 15px ${color}; */
-    background-color: ${theme === "dark" ? Colors.Black : Colors.White};
-    /* filter: drop-shadow(30px 10px 4px #4444dd); */
+    background-color: ${toggle
+      ? theme === "dark"
+        ? Colors.White
+        : "transparent"
+      : theme === "dark"
+      ? Colors.Black
+      : Colors.White};
     cursor: pointer;
   `;
   return <Image src={src} onClick={onChange} />;

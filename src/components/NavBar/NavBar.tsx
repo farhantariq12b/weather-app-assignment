@@ -91,6 +91,7 @@ export default function NavBar({ openModal }: NavBarProps) {
               height={20}
               color={Colors.Blue}
               onChange={toggleTextField}
+              toggle
             />
           </TextFieldContainer>
         )}
@@ -101,6 +102,7 @@ export default function NavBar({ openModal }: NavBarProps) {
           height={30}
           color={Colors.Blue}
           onChange={changeMode}
+          toggle
         />
       </RightContainer>
     </NavBar>

@@ -19,6 +19,7 @@ import SunsetUpIcon from "../assets/weather-icons/weather-sunset-up.svg";
 import SunsetIcon from "../assets/weather-icons/weather-sunset.svg";
 import WindyVariantIcon from "../assets/weather-icons/weather-windy-variant.svg";
 import WindyIcon from "../assets/weather-icons/weather-windy.svg";
+import { ListProps, UniqueDateInterface } from "../interface/list";
 
 export function getRandomCities() {
   const citiesArray: City[] = cities as City[];
@@ -109,10 +110,13 @@ export function msToTimeString(ms: number, timeMode: boolean) {
 
   return timeString;
 }
-export function filter5daysData(list: any[]) {
-  const uniqueDates = {};
-  const filteredList = list.reduce((acc: any[], item: any) => {
+
+export function filter5daysData(list: ListProps[]) {
+  const uniqueDates: UniqueDateInterface = {};
+
+  const filteredList = list.reduce((acc: ListProps[], item: ListProps) => {
     const date = item.dt_txt.split(" ")[0];
+
     if (!uniqueDates[date]) {
       uniqueDates[date] = true;
       acc.push(item);
@@ -120,5 +124,6 @@ export function filter5daysData(list: any[]) {
 
     return acc;
   }, []);
+
   return filteredList;
 }

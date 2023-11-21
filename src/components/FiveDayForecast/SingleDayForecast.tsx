@@ -4,7 +4,18 @@ import { Colors } from "../../constants/colors";
 import styled from "styled-components";
 import { unitSign } from "../../util/common";
 
-export default function SingleDayForecast(data: any) {
+interface SingleDayProps {
+  main: {
+    temp_max: number;
+    temp_min: number;
+  };
+  weather: {
+    main: string;
+    description: string;
+  }[];
+}
+
+export default function SingleDayForecast({ main, weather }: SingleDayProps) {
   const theme: string = useSettignsStore((state) => state.mode);
   const unit = useSettignsStore((state) => state.unit);
   const Container = styled.div`
@@ -21,12 +32,12 @@ export default function SingleDayForecast(data: any) {
   return (
     <Container>
       <WeatherIcons
-        weather={data?.weather?.[0].main || ""}
-        description={data?.weather?.[0].description || ""}
+        weather={weather?.[0].main || ""}
+        description={weather?.[0].description || ""}
       />
       <ForcastDetails>
-        H:{`${data?.main?.temp_max || ""}${unitSign(unit)}`}/L:
-        {`${data?.main?.temp_min || ""}${unitSign(unit)}`}
+        H:{`${main?.temp_max || ""}${unitSign(unit)}`}/L:
+        {`${main?.temp_min || ""}${unitSign(unit)}`}
       </ForcastDetails>
     </Container>
   );

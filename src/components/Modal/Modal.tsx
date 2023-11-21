@@ -65,11 +65,13 @@ export default function Modal({ showModal, toggle }: ModalProps) {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: ${theme === "dark" ? Colors.Black : Colors.White};
+    background-color: ${theme === "dark"
+      ? Colors.Black
+      : Colors.White} !important;
+    color: ${theme === "dark" ? Colors.White : Colors.Black} !important;
     width: 130px;
     font-size: 16px;
     font-weight: bold;
-    color: ${Colors.Blue};
     margin: 0px 0.5rem;
     border-radius: 10px;
     border: 2px solid ${Colors.Blue};

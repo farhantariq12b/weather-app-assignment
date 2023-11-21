@@ -29,7 +29,9 @@ export default function NavigationButtons() {
     text-decoration: none;
     color: ${(props) =>
       props.$selected
-        ? Colors.Blue
+        ? theme === "dark"
+          ? Colors.Blue
+          : Colors.White
         : theme === "dark"
         ? Colors.White
         : Colors.Black};
@@ -37,7 +39,7 @@ export default function NavigationButtons() {
       props.$selected
         ? theme === "dark"
           ? Colors.White
-          : Colors.Black
+          : Colors.Blue
         : theme !== "dark"
         ? Colors.White
         : Colors.Black};

@@ -16,7 +16,7 @@ export default function CityTile({ country, name, lat, lng }: City) {
     background-color: ${selected
       ? theme === "dark"
         ? Colors.White
-        : Colors.Black
+        : Colors.Blue
       : theme !== "dark"
       ? Colors.White
       : Colors.Black};
@@ -27,7 +27,9 @@ export default function CityTile({ country, name, lat, lng }: City) {
 
   const Text = styled.p`
     color: ${selected
-      ? Colors.Blue
+      ? theme === "dark"
+        ? Colors.Blue
+        : Colors.White
       : theme === "dark"
       ? Colors.White
       : Colors.Black};

@@ -27,14 +27,21 @@ export default function TimeSection() {
       props.$selected
         ? theme === "dark"
           ? Colors.White
-          : Colors.Black
+          : Colors.Blue
         : theme === "dark"
         ? Colors.Black
         : Colors.White} !important;
+    color: ${(props) =>
+      props.$selected
+        ? theme === "dark"
+          ? Colors.Blue
+          : Colors.White
+        : theme === "dark"
+        ? Colors.White
+        : Colors.Black} !important;
     width: 130px;
     font-size: 16px;
     font-weight: bold;
-    color: ${Colors.Blue} !important;
     margin: 0px 0.5rem;
     border-radius: 10px;
     border: 2px solid ${Colors.Blue} !important;

@@ -5,6 +5,7 @@ import useCityStore from "../../store/citiesStore";
 
 export default function CitiesSection() {
   const cities = useCityStore((state) => state.citiesList);
+  const filterValue = useCityStore((state) => state.filterValue);
 
   const ListContainer = styled.div`
     display: flex;
@@ -16,9 +17,19 @@ export default function CitiesSection() {
 
   return (
     <ListContainer>
-      {cities.map((city: City, i: number) => (
-        <CityTile key={i} {...city} />
-      ))}
+      {cities
+        .filter((item) => {
+          if (!filterValue) return true;
+          if (
+            item.name.toLowerCase().includes(filterValue.toLowerCase()) ||
+            item.name.includes(filterValue)
+          ) {
+            return true;
+          }
+        })
+        .map((city: City, i: number) => (
+          <CityTile key={i} {...city} />
+        ))}
     </ListContainer>
   );
 }

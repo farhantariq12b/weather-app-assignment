@@ -6,6 +6,7 @@ import Icons from "../Icons";
 import useSettignsStore from "../../store/settingsStore";
 import Clock from "../Clock";
 import { useState } from "react";
+import useCityStore from "../../store/citiesStore";
 
 interface NavBarProps {
   openModal: () => void;
@@ -13,11 +14,17 @@ interface NavBarProps {
 export default function NavBar({ openModal }: NavBarProps) {
   const changeMode = useSettignsStore((state) => state.changeMode);
   const theme = useSettignsStore((state) => state.mode);
+  const changeFilter = useCityStore((state) => state.changeFilter);
 
   const [showTextField, setShowTextField] = useState(false);
   function toggleTextField() {
     setShowTextField((prev) => !prev);
   }
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    changeFilter(event.target.value);
+  };
+
   const NavBar = styled.nav`
     display: flex;
     width: 100%;
@@ -73,7 +80,11 @@ export default function NavBar({ openModal }: NavBarProps) {
           <Button onClick={toggleTextField}>Search</Button>
         ) : (
           <TextFieldContainer>
-            <TextField type="text" placeholder="Search" />
+            <TextField
+              type="text"
+              placeholder="Search"
+              onChange={handleChange}
+            />
             <Icons
               src={CloseIcon}
               width={20}

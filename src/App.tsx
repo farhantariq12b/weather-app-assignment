@@ -27,7 +27,9 @@ function App() {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    font-family: Helvetica, Inter, system-ui, Avenir, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
     width: 100vw;
     background-color: ${theme === "dark" ? Colors.Black : Colors.White};
   `;

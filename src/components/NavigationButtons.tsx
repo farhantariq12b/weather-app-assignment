@@ -14,7 +14,6 @@ export default function NavigationButtons() {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    height: 40vh;
   `;
 
   const NavLinks = styled(Link)<{ $selected?: boolean }>`

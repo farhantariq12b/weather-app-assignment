@@ -8,6 +8,7 @@ export default function Home() {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    height: 69.95vh;
   `;
   return (
     <Container>

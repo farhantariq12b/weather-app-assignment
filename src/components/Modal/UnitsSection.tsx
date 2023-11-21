@@ -3,6 +3,7 @@ import { Colors } from "../../constants/colors";
 import useSettignsStore from "../../store/settingsStore";
 
 export default function UnitsSection() {
+  const theme = useSettignsStore((state) => state.mode);
   const unit = useSettignsStore((state) => state.unit);
   const changeUnit = useSettignsStore((state) => state.changeUnit);
   console.log(unit);
@@ -23,7 +24,13 @@ export default function UnitsSection() {
     justify-content: center;
     align-items: center;
     background-color: ${(props) =>
-      props.$selected ? Colors.White : Colors.Black} !important;
+      props.$selected
+        ? theme === "dark"
+          ? Colors.White
+          : Colors.Black
+        : theme === "dark"
+        ? Colors.Black
+        : Colors.White} !important;
     width: 100px;
     font-size: 16px;
     font-weight: bold;

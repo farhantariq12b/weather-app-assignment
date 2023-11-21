@@ -48,16 +48,13 @@ export function getWeatherIcon(weather: string) {
     case "thunderstorm with drizzle":
     case "thunderstorm with heavy drizzle":
       return LightningRainyIcon;
-
     case "light thunderstorm":
     case "thunderstorm":
     case "heavy thunderstorm":
     case "ragged thunderstorm":
       return LightningIcon;
-
     case "Night":
       return NightIcon;
-
     case "few clouds":
     case "broken clouds":
       return PartlyCloudIcon;
@@ -68,6 +65,7 @@ export function getWeatherIcon(weather: string) {
     case "rain and snow":
       return SnowyRainyIcon;
     case "snow":
+    case "light snow":
       return SnowyIcon;
     case "sunny":
       return SunnyIcon;
@@ -110,4 +108,17 @@ export function msToTimeString(ms: number, timeMode: boolean) {
   });
 
   return timeString;
+}
+export function filter5daysData(list: any[]) {
+  const uniqueDates = {};
+  const filteredList = list.reduce((acc: any[], item: any) => {
+    const date = item.dt_txt.split(" ")[0];
+    if (!uniqueDates[date]) {
+      uniqueDates[date] = true;
+      acc.push(item);
+    }
+
+    return acc;
+  }, []);
+  return filteredList;
 }

@@ -2,10 +2,11 @@ import WeatherIcons from "../WeatherIcons";
 import useSettignsStore from "../../store/settingsStore";
 import { Colors } from "../../constants/colors";
 import styled from "styled-components";
+import { unitSign } from "../../util/common";
 
-export default function SingleDayForecast() {
+export default function SingleDayForecast(data: any) {
   const theme: string = useSettignsStore((state) => state.mode);
-
+  const unit = useSettignsStore((state) => state.unit);
   const Container = styled.div`
     display: flex;
     flex-direction: column;
@@ -19,9 +20,13 @@ export default function SingleDayForecast() {
   `;
   return (
     <Container>
-      <WeatherIcons />
+      <WeatherIcons
+        weather={data?.weather?.[0].main || ""}
+        description={data?.weather?.[0].description || ""}
+      />
       <ForcastDetails>
-        H:{1}ºC/L:{2}ºC
+        H:{`${data?.main?.temp_max || ""}${unitSign(unit)}`}/L:
+        {`${data?.main?.temp_min || ""}${unitSign(unit)}`}
       </ForcastDetails>
     </Container>
   );

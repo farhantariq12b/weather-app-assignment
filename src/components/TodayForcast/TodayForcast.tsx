@@ -65,11 +65,11 @@ export default function CurrentWeather() {
               <p>Humidity: {data?.main?.humidity || ""}%</p>
               <p>
                 Sunrise:{" "}
-                {msToTimeString(data?.sys?.sunrise, timeMode !== "24h") || ""}
+                {msToTimeString(data?.sys?.sunrise, timeMode === "24h") || ""}
               </p>
               <p>
                 Sunset:{" "}
-                {msToTimeString(data?.sys?.sunset, timeMode !== "24h") || ""}
+                {msToTimeString(data?.sys?.sunset, timeMode === "24h") || ""}
               </p>
             </ForcastDetailsContainer>
           </>

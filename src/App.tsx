@@ -7,7 +7,7 @@ import { routes } from "./constants/routes";
 //Components import
 import NavBar from "./components/NavBar/NavBar";
 import CitiesSection from "./components/CityList/CityListSection";
-import { Modal } from "./components/Modal/Modal";
+import Modal from "./components/Modal/Modal";
 //Pages Import.
 import Home from "./pages/Home";
 import FiveDays from "./pages/FiveDays";

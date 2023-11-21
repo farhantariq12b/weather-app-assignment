@@ -1,6 +1,8 @@
 import React, { useRef, useEffect, useCallback } from "react";
 import styled from "styled-components";
 import { Colors } from "../../constants/colors";
+import UnitsSection from "./UnitsSection";
+import TimeSection from "./TImeSection";
 
 const Background = styled.div`
   width: 100%;
@@ -32,13 +34,27 @@ const ModalContent = styled.div`
   p {
     margin-bottom: 1rem;
   }
+`;
 
-  button {
-    padding: 10px 24px;
-    background: #141414;
-    color: #fff;
-    border: none;
-  }
+const Button = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: ${Colors.Black};
+  width: 130px;
+  font-size: 16px;
+  font-weight: bold;
+  color: ${Colors.Blue};
+  margin: 0px 0.5rem;
+  border-radius: 10px;
+  border: 2px solid ${Colors.Blue};
+  line-height: 1.6;
+`;
+
+const RowContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin-top: 2rem;
 `;
 
 interface ModalProps {
@@ -59,7 +75,6 @@ export const Modal: React.FC<ModalProps> = ({ showModal, toggle }) => {
     (e: KeyboardEvent) => {
       if (e.key === "Escape" && showModal) {
         toggle();
-        console.log("I pressed");
       }
     },
     [showModal, toggle]
@@ -77,6 +92,12 @@ export const Modal: React.FC<ModalProps> = ({ showModal, toggle }) => {
           <ModalWrapper>
             <ModalContent>
               <h4>Settings</h4>
+              <UnitsSection />
+              <TimeSection />
+              <RowContainer>
+                <Button onClick={toggle}>Cancle</Button>
+                <Button onClick={toggle}>Save</Button>
+              </RowContainer>
             </ModalContent>
           </ModalWrapper>
         </Background>

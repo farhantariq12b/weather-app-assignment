@@ -2,10 +2,10 @@ import styled from "styled-components";
 import { Colors } from "../../constants/colors";
 import useSettignsStore from "../../store/settingsStore";
 
-export default function UnitsSection() {
-  const unit = useSettignsStore((state) => state.unit);
-  const changeUnit = useSettignsStore((state) => state.changeUnit);
-  console.log(unit);
+export default function TimeSection() {
+  const timeMode = useSettignsStore((state) => state.timeMode);
+  const changeTimeMode = useSettignsStore((state) => state.changeTimeMode);
+
   const Container = styled.div`
     display: flex;
     flex-direction: column;
@@ -24,7 +24,7 @@ export default function UnitsSection() {
     align-items: center;
     background-color: ${(props) =>
       props.$selected ? Colors.White : Colors.Black} !important;
-    width: 100px;
+    width: 130px;
     font-size: 16px;
     font-weight: bold;
     color: ${Colors.Blue} !important;
@@ -39,25 +39,19 @@ export default function UnitsSection() {
   `;
   return (
     <Container>
-      <p>Unit</p>
+      <p>Time</p>
       <RowContainer>
         <Button
-          $selected={unit === "imperial"}
-          onClick={() => changeUnit("imperial")}
+          $selected={timeMode === "am/pm"}
+          onClick={() => changeTimeMode("am/pm")}
         >
-          Imperial
+          AM / PM
         </Button>
         <Button
-          $selected={unit === "metric"}
-          onClick={() => changeUnit("metric")}
+          $selected={timeMode === "24h"}
+          onClick={() => changeTimeMode("24h")}
         >
-          Metric
-        </Button>
-        <Button
-          $selected={unit === "standard"}
-          onClick={() => changeUnit("standard")}
-        >
-          Standard
+          24h
         </Button>
       </RowContainer>
     </Container>

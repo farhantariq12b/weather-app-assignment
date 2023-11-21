@@ -15,10 +15,10 @@ type Action = {
 const useSettignsStore = create<State & Action>((set) => ({
   mode: "dark",
   unit: "metric",
-  timeMode: "24",
-  changeMode: (mode) => set(() => ({ mode })),
-  changeUnit: (unit) => set(() => ({ unit })),
-  changeTimeMode: (timeMode) => set(() => ({ timeMode })),
+  timeMode: "24h",
+  changeMode: (mode) => set(() => ({ mode: mode })),
+  changeUnit: (unit) => set(() => ({ unit: unit })),
+  changeTimeMode: (timeMode) => set(() => ({ timeMode: timeMode })),
 }));
 
 export default useSettignsStore;

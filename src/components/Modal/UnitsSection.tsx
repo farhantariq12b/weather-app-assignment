@@ -39,6 +39,7 @@ export default function UnitsSection() {
     border-radius: 10px;
     border: 2px solid ${Colors.Blue} !important;
     padding: 4px;
+    cursor: pointer;
   `;
   const RowContainer = styled.div`
     display: flex;

@@ -22,6 +22,7 @@ export default function CityTile({ country, name, lat, lng }: City) {
       : Colors.Black};
     border: 2px solid ${Colors.Blue};
     border-radius: 6px;
+    cursor: pointer;
   `;
 
   const Text = styled.p`

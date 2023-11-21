@@ -4,6 +4,7 @@ import { Colors } from "../../constants/colors";
 import UnitsSection from "./UnitsSection";
 import TimeSection from "./TImeSection";
 import useSettignsStore from "../../store/settingsStore";
+import Clock from "../NavBar/Clock";
 
 interface ModalProps {
   showModal: boolean;
@@ -73,6 +74,7 @@ export default function Modal({ showModal, toggle }: ModalProps) {
     border-radius: 10px;
     border: 2px solid ${Colors.Blue};
     line-height: 1.6;
+    cursor: pointer;
   `;
 
   const RowContainer = styled.div`
@@ -98,6 +100,7 @@ export default function Modal({ showModal, toggle }: ModalProps) {
                 <Button onClick={toggle}>Cancle</Button>
                 <Button onClick={toggle}>Save</Button>
               </RowContainer>
+              <Clock />
             </ModalContent>
           </ModalWrapper>
         </Background>

@@ -6,6 +6,7 @@ import { Colors } from "../../constants/colors";
 import { msToTimeString, unitSign } from "../../util/common";
 import { fetchTodayForecast } from "../../api/api";
 import { useQuery } from "react-query";
+import Loader from "../Loader";
 
 export default function CurrentWeather() {
   const theme: string = useSettignsStore((state) => state.mode);
@@ -13,7 +14,7 @@ export default function CurrentWeather() {
   const timeMode = useSettignsStore((state) => state.timeMode);
   const cityName = useCityStore((state) => state.selectedCity.name);
   const { lat, lng } = useCityStore((state) => state.selectedCity);
-  const { data } = useQuery(["todayForecast", lat, lng, unit], () =>
+  const { data, isLoading } = useQuery(["todayForecast", lat, lng, unit], () =>
     fetchTodayForecast(lat, lng, unit)
   );
   const Container = styled.div`
@@ -31,7 +32,7 @@ export default function CurrentWeather() {
     display: flex;
     flex-direction: row;
     margin-top: 2rem;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     width: 100%;
   `;
@@ -41,6 +42,7 @@ export default function CurrentWeather() {
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
+    margin: 0 2rem;
     > p {
       font-size: 1.2rem;
       margin: 0.1rem 0 !important;
@@ -51,7 +53,9 @@ export default function CurrentWeather() {
     <Container>
       <p>{cityName}</p>
       <RowContainer>
-        {data ? (
+        {isLoading ? (
+          <Loader />
+        ) : (
           <>
             <WeatherIcons
               weather={data?.weather?.[0]["main"]}
@@ -73,7 +77,7 @@ export default function CurrentWeather() {
               </p>
             </ForcastDetailsContainer>
           </>
-        ) : null}
+        )}
       </RowContainer>
     </Container>
   );

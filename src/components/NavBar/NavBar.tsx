@@ -18,6 +18,7 @@ export default function NavBar({ openModal }: NavBarProps) {
 
   const [showTextField, setShowTextField] = useState(false);
   function toggleTextField() {
+    changeFilter("");
     setShowTextField((prev) => !prev);
   }
 

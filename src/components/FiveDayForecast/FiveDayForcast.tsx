@@ -6,13 +6,14 @@ import SingleDayForecast from "./SingleDayForecast";
 import { useQuery } from "react-query";
 import { fetch5DayForecast } from "../../api/api";
 import { filter5daysData } from "../../util/common";
+import Loader from "../Loader";
 
 export default function FiveDayForcast() {
   const theme: string = useSettignsStore((state) => state.mode);
   const cityName = useCityStore((state) => state.selectedCity.name);
   const unit = useSettignsStore((state) => state.unit);
   const { lat, lng } = useCityStore((state) => state.selectedCity);
-  const { data } = useQuery(["5DayForecast", lat, lng, unit], () =>
+  const { data, isLoading } = useQuery(["5DayForecast", lat, lng, unit], () =>
     fetch5DayForecast(lat, lng, unit)
   );
   const filteredList = filter5daysData(data?.list || []).slice(0, 5);
@@ -33,7 +34,7 @@ export default function FiveDayForcast() {
     flex-direction: row;
     flex-wrap: wrap;
     margin-top: 2rem;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     width: 100%;
   `;
@@ -42,9 +43,13 @@ export default function FiveDayForcast() {
     <Container>
       <p>{cityName}</p>
       <RowContainer>
-        {filteredList.map((item, i: number) => (
-          <SingleDayForecast key={i} {...item} />
-        ))}
+        {isLoading ? (
+          <Loader />
+        ) : (
+          filteredList.map((item, i: number) => (
+            <SingleDayForecast key={i} {...item} />
+          ))
+        )}
       </RowContainer>
     </Container>
   );

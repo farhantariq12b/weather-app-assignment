@@ -7,7 +7,7 @@ type State = {
 };
 
 type Action = {
-  changeMode: (mode: State["mode"]) => void;
+  changeMode: () => void;
   changeUnit: (mode: State["unit"]) => void;
   changeTimeMode: (mode: State["timeMode"]) => void;
 };
@@ -16,7 +16,8 @@ const useSettignsStore = create<State & Action>((set) => ({
   mode: "dark",
   unit: "metric",
   timeMode: "24h",
-  changeMode: (mode) => set(() => ({ mode: mode })),
+  changeMode: () =>
+    set((state) => ({ mode: state.mode === "dark" ? "light" : "dark" })),
   changeUnit: (unit) => set(() => ({ unit: unit })),
   changeTimeMode: (timeMode) => set(() => ({ timeMode: timeMode })),
 }));

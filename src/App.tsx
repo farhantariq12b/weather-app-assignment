@@ -1,35 +1,47 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from 'react';
+import { Routes, Route, BrowserRouter } from 'react-router-dom';
+import styled from 'styled-components';
+//Routes constants import.
+import { routes } from './constants/routes';
+//Css Import
+import './App.css';
+//Components import
+import NavBar from './components/NavBar/NavBar';
+import CitiesSection from './components/CityList/CityListSection';
+import { Modal } from './components/Modal';
+//Pages Import.
+import Home from './pages/Home';
+import FiveDays from './pages/FiveDays';
+import { Colors } from './constants/colors';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [showModal, setShowModal] = useState<boolean>(false);
 
+  const openModal = () => {
+    setShowModal((prev) => !prev);
+  };
+  const Container = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    background-color: ${Colors.Black};
+  `;
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <Container>
+      <BrowserRouter>
+        <NavBar openModal={openModal} />
+        <Routes>
+          <Route path={routes.home} element={<Home />} />
+          <Route path={routes.fiveDay} element={<FiveDays />} />
+        </Routes>
+        <CitiesSection />
+      </BrowserRouter>
+      <Modal showModal={showModal} setShowModal={setShowModal} />
+    </Container>
+  );
 }
 
-export default App
+export default App;

@@ -1,15 +1,18 @@
-import { Link } from 'react-router-dom';
-import { routes } from '../constants/routes';
-import styled from 'styled-components';
+import styled from "styled-components";
+import CurrentWeather from "../components/CurrentWeather/CurrentWeather";
+import NavigationButtons from "../components/NavigationButtons";
 
 export default function Home() {
   const Container = styled.div`
-    height: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   `;
   return (
     <Container>
-      Home
-      <Link to={routes.fiveDay} />
+      <CurrentWeather />
+      <NavigationButtons />
     </Container>
   );
 }

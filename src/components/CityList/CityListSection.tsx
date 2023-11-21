@@ -13,6 +13,8 @@ export default function CitiesSection() {
     justify-content: center;
     align-items: center;
     max-width: 1280px;
+    min-height: 23.8vh;
+    height: fit-content;
   `;
 
   return (

@@ -27,11 +27,9 @@ export default function NavBar({ openModal }: NavBarProps) {
 
   const NavBar = styled.nav`
     display: flex;
-    width: 100%;
-    max-width: 1280px;
+    width: 90%;
     justify-content: space-between;
     align-items: center;
-    padding: 0;
   `;
 
   const RightContainer = styled.div`
@@ -43,6 +41,7 @@ export default function NavBar({ openModal }: NavBarProps) {
 
   const Button = styled.button`
     min-width: 100px;
+    min-height: 37px;
     background-color: ${theme === "dark" ? Colors.Black : Colors.White};
     color: ${theme === "dark" ? Colors.White : Colors.Black};
     border: none;

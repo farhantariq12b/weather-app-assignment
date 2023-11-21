@@ -4,7 +4,7 @@ import ThemeSwitch from "../../assets/weather-icons/theme-switch.svg";
 import CloseIcon from "../../assets/weather-icons/close-circle.svg";
 import Icons from "../Icons";
 import useSettignsStore from "../../store/settingsStore";
-import Clock from "../Clock";
+import Clock from "./Clock";
 import { useState } from "react";
 import useCityStore from "../../store/citiesStore";
 

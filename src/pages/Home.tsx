@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import CurrentWeather from "../components/CurrentWeather/CurrentWeather";
+import CurrentWeather from "../components/CurrentForcast/CurrentForcast";
 import NavigationButtons from "../components/NavigationButtons";
 
 export default function Home() {

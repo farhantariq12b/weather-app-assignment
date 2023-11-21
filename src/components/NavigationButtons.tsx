@@ -42,14 +42,23 @@ export default function NavigationButtons() {
         ? Colors.White
         : Colors.Black};
   `;
+
+  const Title = styled.div`
+    font-size: 1rem;
+    font-weight: bold;
+    color: ${theme === "dark" ? Colors.White : Colors.Black};
+  `;
   return (
-    <ButtonsContainer>
-      <NavLinks to={routes.home} $selected={pathname === routes.home}>
-        Now
-      </NavLinks>
-      <NavLinks to={routes.fiveDay} $selected={pathname === routes.fiveDay}>
-        5 Days
-      </NavLinks>
-    </ButtonsContainer>
+    <>
+      <Title>Forecast</Title>
+      <ButtonsContainer>
+        <NavLinks to={routes.home} $selected={pathname === routes.home}>
+          Now
+        </NavLinks>
+        <NavLinks to={routes.fiveDay} $selected={pathname === routes.fiveDay}>
+          5 Days
+        </NavLinks>
+      </ButtonsContainer>
+    </>
   );
 }

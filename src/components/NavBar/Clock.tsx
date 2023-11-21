@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import useSettignsStore from "../store/settingsStore";
+import useSettignsStore from "../../store/settingsStore";
 import styled from "styled-components";
-import { Colors } from "../constants/colors";
+import { Colors } from "../../constants/colors";
 
 export default function Clock() {
   const timeMode = useSettignsStore((state) => state.timeMode);

@@ -13,8 +13,10 @@ import Home from "./pages/Home";
 import FiveDays from "./pages/FiveDays";
 import { Colors } from "./constants/colors";
 import useSettignsStore from "./store/settingsStore";
+import { QueryClientProvider, QueryClient } from "react-query";
 
 function App() {
+  const queryClient = new QueryClient();
   const theme = useSettignsStore((state) => state.mode);
   const [showModal, setShowModal] = useState<boolean>(false);
 
@@ -35,17 +37,19 @@ function App() {
   `;
 
   return (
-    <Container>
-      <BrowserRouter>
-        <NavBar openModal={openModal} />
-        <Routes>
-          <Route path={routes.home} element={<Home />} />
-          <Route path={routes.fiveDay} element={<FiveDays />} />
-        </Routes>
-        <CitiesSection />
-      </BrowserRouter>
-      <Modal showModal={showModal} toggle={openModal} />
-    </Container>
+    <QueryClientProvider client={queryClient}>
+      <Container>
+        <BrowserRouter>
+          <NavBar openModal={openModal} />
+          <Routes>
+            <Route path={routes.home} element={<Home />} />
+            <Route path={routes.fiveDay} element={<FiveDays />} />
+          </Routes>
+          <CitiesSection />
+        </BrowserRouter>
+        <Modal showModal={showModal} toggle={openModal} />
+      </Container>
+    </QueryClientProvider>
   );
 }
 

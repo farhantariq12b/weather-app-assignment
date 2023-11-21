@@ -32,29 +32,42 @@ export function getRandomCities() {
 
 export function getWeatherIcon(weather: string) {
   switch (weather) {
-    case "clear":
+    case "clear sky":
       return ClearIcon;
     case "fog":
       return FogIcon;
-    case "cloudy":
+    case "scattered clouds":
+    case "overcast clouds":
       return CloudyIcon;
-    case "hail":
+    case "haze":
       return HailIcon;
-    case "lightningrainy":
+    case "thunderstorm with rain":
+    case "thunderstorm with light rain":
+    case "thunderstorm with heavy rain":
+    case "thunderstorm with light drizzle":
+    case "thunderstorm with drizzle":
+    case "thunderstorm with heavy drizzle":
       return LightningRainyIcon;
-    case "lightning":
+
+    case "light thunderstorm":
+    case "thunderstorm":
+    case "heavy thunderstorm":
+    case "ragged thunderstorm":
       return LightningIcon;
-    case "night":
+
+    case "Night":
       return NightIcon;
-    case "partlycloud":
+
+    case "few clouds":
+    case "broken clouds":
       return PartlyCloudIcon;
-    case "pouring":
+    case "light rain":
       return PouringIcon;
-    case "snowyheavy":
+    case "heavy snow":
       return SnowyHeavyIcon;
-    case "snowyrainy":
+    case "rain and snow":
       return SnowyRainyIcon;
-    case "snowy":
+    case "snow":
       return SnowyIcon;
     case "sunny":
       return SunnyIcon;
@@ -72,4 +85,29 @@ export function getWeatherIcon(weather: string) {
     default:
       return UnknownIcon;
   }
+}
+
+export function unitSign(unit: string) {
+  switch (unit) {
+    case "imperial":
+      return "ºF";
+    case "metric":
+      return "ºC";
+    case "standard":
+      return "ºK";
+    default:
+      return "ºC";
+  }
+}
+
+export function msToTimeString(ms: number, timeMode: boolean) {
+  const date = new Date(ms);
+
+  const timeString = date.toLocaleTimeString("en-US", {
+    hour: "numeric",
+    minute: "numeric",
+    hour12: !timeMode,
+  });
+
+  return timeString;
 }

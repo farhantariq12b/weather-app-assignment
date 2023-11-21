@@ -4,7 +4,16 @@ import { getWeatherIcon } from "../util/common";
 import useSettignsStore from "../store/settingsStore";
 import { Colors } from "../constants/colors";
 
-export default function WeatherIcons() {
+interface WeatherIconProps {
+  weather: string;
+  description: string;
+}
+
+export default function WeatherIcons({
+  weather,
+  description,
+}: WeatherIconProps) {
+  console.log(weather, description);
   const theme = useSettignsStore((state) => state.mode);
   const Container = styled.div`
     display: flex;
@@ -17,11 +26,11 @@ export default function WeatherIcons() {
     font-size: 1.2rem;
     color: ${theme === "dark" ? Colors.White : Colors.Black};
   `;
-  const IconString = getWeatherIcon("");
+  const IconString = getWeatherIcon(description || "");
   return (
     <Container>
       <Icons src={IconString} height={150} width={100} />
-      <WeatherTitle>Title</WeatherTitle>
+      <WeatherTitle>{weather}</WeatherTitle>
     </Container>
   );
 }

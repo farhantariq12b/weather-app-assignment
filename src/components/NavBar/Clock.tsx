@@ -22,7 +22,7 @@ export default function Clock() {
           hour12: timeMode !== "24h",
         })
       );
-    }, 1000);
+    }, 60000);
     return () => clearInterval(intervalID);
   }, [timeMode]);
 

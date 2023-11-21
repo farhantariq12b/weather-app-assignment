@@ -1,27 +1,16 @@
-import styled from 'styled-components';
-import { Colors } from '../../constants/colors';
-import { City } from '../../interface/city';
+import styled from "styled-components";
+import { Colors } from "../../constants/colors";
+import { City } from "../../interface/city";
+import useCityStore from "../../store/citiesStore";
 
-interface CityTileProps {
-  country: string;
-  name: string;
-  lat: string;
-  lng: string;
-  onChange: (city: City) => void;
-  selected: boolean;
-}
-export default function CityTile({
-  country,
-  name,
-  lat,
-  lng,
-  onChange,
-  selected,
-}: CityTileProps) {
+export default function CityTile({ country, name, lat, lng }: City) {
+  const changeSelectedCity = useCityStore((state) => state.changeSelectedCity);
+  const selectedCity = useCityStore((state) => state.selectedCity);
+  const selected = selectedCity.name === name;
   const Container = styled.button`
     padding: 3px;
     margin: 10px;
-    width: 150px;
+    width: 180px;
     background-color: ${selected ? Colors.White : Colors.Black};
     border: 2px solid ${Colors.Blue};
     border-radius: 6px;
@@ -36,7 +25,7 @@ export default function CityTile({
   return (
     <Container
       onClick={() =>
-        onChange({
+        changeSelectedCity({
           country,
           name,
           lat,

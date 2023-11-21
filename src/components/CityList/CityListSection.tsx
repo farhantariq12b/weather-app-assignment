@@ -1,25 +1,10 @@
-import { useEffect, useState } from 'react';
-import { getRandomCities } from '../../util/common';
-import styled from 'styled-components';
-import CityTile from './CityTile';
-import { City } from '../../interface/city';
+import styled from "styled-components";
+import CityTile from "./CityTile";
+import { City } from "../../interface/city";
+import useCityStore from "../../store/citiesStore";
 
 export default function CitiesSection() {
-  const [cities, setCities] = useState<City[]>([]);
-  const [selectedCity, setSelectedCity] = useState<City>({
-    country: '',
-    name: '',
-    lat: '',
-    lng: '',
-  });
-  useEffect(() => {
-    setCities(getRandomCities());
-  }, []);
-
-  function setCity(city: City): void {
-    console.log(city);
-    setSelectedCity(city);
-  }
+  const cities = useCityStore((state) => state.citiesList);
 
   const Container = styled.div`
     display: flex;
@@ -31,12 +16,7 @@ export default function CitiesSection() {
   return (
     <Container>
       {cities.map((city: City, i: number) => (
-        <CityTile
-          key={i}
-          {...city}
-          onChange={setCity}
-          selected={city.name === selectedCity.name}
-        />
+        <CityTile key={i} {...city} />
       ))}
     </Container>
   );

@@ -1,18 +1,18 @@
-import { useState } from 'react';
-import { Routes, Route, BrowserRouter } from 'react-router-dom';
-import styled from 'styled-components';
+import { useState } from "react";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
+import styled from "styled-components";
 //Routes constants import.
-import { routes } from './constants/routes';
+import { routes } from "./constants/routes";
 //Css Import
-import './App.css';
+import "./App.css";
 //Components import
-import NavBar from './components/NavBar/NavBar';
-import CitiesSection from './components/CityList/CityListSection';
-import { Modal } from './components/Modal';
+import NavBar from "./components/NavBar/NavBar";
+import CitiesSection from "./components/CityList/CityListSection";
+import { Modal } from "./components/Modal/Modal";
 //Pages Import.
-import Home from './pages/Home';
-import FiveDays from './pages/FiveDays';
-import { Colors } from './constants/colors';
+import Home from "./pages/Home";
+import FiveDays from "./pages/FiveDays";
+import { Colors } from "./constants/colors";
 
 function App() {
   const [showModal, setShowModal] = useState<boolean>(false);
@@ -20,6 +20,7 @@ function App() {
   const openModal = () => {
     setShowModal((prev) => !prev);
   };
+
   const Container = styled.div`
     display: flex;
     flex-direction: column;
@@ -29,6 +30,7 @@ function App() {
     width: 100%;
     background-color: ${Colors.Black};
   `;
+
   return (
     <Container>
       <BrowserRouter>
@@ -39,7 +41,7 @@ function App() {
         </Routes>
         <CitiesSection />
       </BrowserRouter>
-      <Modal showModal={showModal} setShowModal={setShowModal} />
+      <Modal showModal={showModal} toggle={openModal} />
     </Container>
   );
 }
